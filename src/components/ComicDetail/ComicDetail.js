@@ -16,9 +16,11 @@ const ComicDetail = ({comicData, setComicData}) => {
     const getOneComicData = async() => {
       const data = await getComicData(`https://comic-can.herokuapp.com/api/v1/comicData/${id}`)
       setComicCard(data[0])
+      console.log(comicCard)
     }
    getOneComicData()
   }, [])
+  
   const [showModal, setShowModal] = useState(false);
 
   const checkVerification = () => {

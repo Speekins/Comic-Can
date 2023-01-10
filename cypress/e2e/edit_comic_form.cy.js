@@ -2,9 +2,9 @@ describe('Edit Comic Form', () => {
 
   beforeEach(() => {
     cy.visit('http://localhost:3000/')
-    cy.intercept('https://comic-can.herokuapp.com/api/v1/comicData', { fixture: 'getComicData.json' })
+    cy.intercept('GET', 'https://comic-can.herokuapp.com/api/v1/comicData', { fixture: 'getComicData.json' })
     cy.get('.my-collection-link').click()
-    cy.get('.comic-image').first().click()
+    cy.get('.card-container').first().click()
     cy.intercept('https://comic-can.herokuapp.com/api/v1/comicData/1', { fixture: 'getSingleComicData.json' })
     cy.get('.edit').click()
   })
@@ -23,9 +23,9 @@ describe('Edit Comic Form', () => {
   })
 
   it('should be able to update the title', () => {
+    cy.intercept('PUT', 'https://comic-can.herokuapp.com/api/v1/comicData/1', { fixture: 'putTitleComicData.json' })
     cy.get('input[name="title"]').clear().type('Test')
     cy.get('.updateButton').click()
-    cy.intercept('https://comic-can.herokuapp.com/api/v1/comicData/1', { fixture: 'putTitleComicData.json' })
     cy.get('h2').contains('Test')
   })
 
