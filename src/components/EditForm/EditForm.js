@@ -9,7 +9,7 @@ const EditForm = ({ comicCard, setComicCard, show, setShowModal, comicData, setC
   const [year, setYear] = useState(comicCard.year);
   const [issue, setIssue] = useState(comicCard.issue);
   const [grade, setGrade] = useState(comicCard.grade);
-  const [imageURL, setImageURL] = useState(comicCard.image_path);
+  const [imageURL, setImageURL] = useState(comicCard.image_path ? comicCard.image_path : "");
   const [note, setNote] = useState(comicCard.note);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const EditForm = ({ comicCard, setComicCard, show, setShowModal, comicData, setC
     const data = await getComicData(`https://comic-can.herokuapp.com/api/v1/comicData/${comicCard.id}`)
     setComicCard(data[0])
   }
-  console.log(note)
+
   const editComicData = async () => {
     const url = `https://comic-can.herokuapp.com/api/v1/comicData/${comicCard.id}`;
     const newComic = {
