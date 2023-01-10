@@ -1,4 +1,4 @@
-describe('template spec', () => {
+describe('Comic Detail View', () => {
    let imgSrc
   beforeEach(() => {
     imgSrc = "https://assets-global.website-files.com/5e9fa1c7e4ed1f5e242e2313/6193e5a113d2b7978adc2472_ZCi0CiIQ-Lmvvn6hUNV6j773Z_IQgMmuapFfCUUQXtUWDhqdL3ds_miY2q_Hw0dEX3ZhS6CdaCwzi3037ddvX_ea7XS4n1OGPEFHajAEtofPllmeqhcZPgkRkTTa5iulBXqR20aZ.png"
@@ -25,12 +25,15 @@ describe('template spec', () => {
     cy.get('p').eq(1).contains('15')
   })
 
+  it("should show the comic's grade", () => {
+    cy.get('p').eq(2).contains('9.6')
+  })
+
   it('should have a section for notes', () => {
     cy.get('p').last().contains('Note')
   })
 
   it('should be verified if it has an uploaded cover image', () => {
-    //cy.get('.verifiedImage').should('have.attr', 'src', '../assets/verified.png')
     cy.get('.verifiedImage')
     .should('be.visible')
     .and(($img) => {
@@ -38,7 +41,7 @@ describe('template spec', () => {
     })
   })
 
-  it('should have an "EDIT" button that bring up the edit form when clicked', () => {
+  it('should have an "EDIT" button that brings up the edit form when clicked', () => {
     cy.get('.edit').click()
     cy.get('.form').should('be.visible')
   })

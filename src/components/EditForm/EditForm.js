@@ -25,7 +25,7 @@ const EditForm = ({ comicCard, setComicCard, show, setShowModal, comicData, setC
     const data = await getComicData(`https://comic-can.herokuapp.com/api/v1/comicData/${comicCard.id}`)
     setComicCard(data[0])
   }
-  
+  console.log(note)
   const editComicData = async () => {
     const url = `https://comic-can.herokuapp.com/api/v1/comicData/${comicCard.id}`;
     const newComic = {
@@ -35,7 +35,7 @@ const EditForm = ({ comicCard, setComicCard, show, setShowModal, comicData, setC
       issue: issue,
       grade: grade,
       image_path: imageURL,
-      verified: comicCard.varified,
+      verified: comicCard.verified,
       note: note,
     };
     await putComicData(url, newComic)
