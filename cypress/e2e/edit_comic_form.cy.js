@@ -70,6 +70,7 @@ describe('Edit Comic Form', () => {
   })
 
   it('should be able to delete the comic', () => {
-    cy.get('.delete').click()
+    cy.get('.delete').click();
+    
   })
 })
